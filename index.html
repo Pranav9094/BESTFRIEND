@@ -194,14 +194,10 @@
             position: relative;
             overflow: hidden;
         }
-        .video-card video{
-    width:100%;
-    height:auto;
-    min-height:250px;
-    object-fit:cover;
-    display:block;
-}
-        
+        .video-card video {
+            width: 100%; aspect-ratio: 4/3; object-fit: cover;
+            border-radius: 6px; display: block;
+        }
         .video-badge {
             position: absolute; top: 14px; right: 14px;
             width: 24px; height: 24px; background: rgba(212,98,138,0.88);
@@ -446,25 +442,18 @@
 
         </div>
 
-       <div class="videos-row">
-
-    <div class="video-card">
-        <div class="video-badge">▶</div>
-        <video controls muted loop playsinline preload="auto">
-            <source src="vid1.mp4" type="video/mp4">
-        </video>
-        <div class="video-caption">Our little moment 🎬</div>
-    </div>
-
-    <div class="video-card">
-        <div class="video-badge">▶</div>
-        <video controls muted loop playsinline preload="auto">
-            <source src="vid2.mp4" type="video/mp4">
-        </video>
-        <div class="video-caption">Best memories 🎀</div>
-    </div>
-
-</div>
+        <div class="videos-row">
+            <div class="video-card">
+                <div class="video-badge">▶</div>
+                <video src="./vid1.mp4" autoplay muted loop playsinline preload="metadata"></video>
+                <div class="video-caption">Our little moment 🎬</div>
+            </div>
+            <div class="video-card">
+                <div class="video-badge">▶</div>
+                <video src="./vid 2.mp4" autoplay muted loop playsinline preload="metadata"></video>
+                <div class="video-caption">Best memories 🎀</div>
+            </div>
+        </div>
     </div>
 </section>
 
