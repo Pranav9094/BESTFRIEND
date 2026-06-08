@@ -1,2 +1,3 @@
 ﻿# BESTFRIEND
 
+ONLY FOR U
