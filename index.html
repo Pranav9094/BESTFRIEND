@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Best Friends Day - Pragati Rayate (Saee) 🌸</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ivory:       #FDFAF5;
+            --cream:       #FAF6EE;
+            --blush-light: #FFF0F5;
+            --blush:       #FFD9E8;
+            --rose:        #F2A7C3;
+            --rose-deep:   #D4628A;
+            --burgundy:    #8B3557;
+            --gold:        #C8933A;
+            --gold-light:  #F5E6C0;
+            --sage-light:  #EEF6EC;
+            --sage:        #A8C8A0;
+            --plum:        #4A1E3A;
+            --plum-mid:    #7A3060;
+            --text:        #3A1E2E;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background: var(--ivory);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background-image:
+                radial-gradient(ellipse 60% 40% at 10% 15%, rgba(242,167,195,0.13) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 60% at 90% 85%, rgba(255,217,232,0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 30% at 50% 50%, rgba(245,230,192,0.08) 0%, transparent 60%);
+        }
+
+        .scroll-bar {
+            position: fixed; top: 0; left: 0; height: 2px; width: 0;
+            background: linear-gradient(90deg, var(--rose-deep), var(--gold), var(--rose));
+            z-index: 9999; transition: width 0.1s;
+        }
+
+        .cursor-dot  { position: fixed; width: 6px; height: 6px; background: var(--rose-deep); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); }
+        .cursor-ring { position: fixed; width: 24px; height: 24px; border: 1.5px solid var(--rose); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: border-color 0.3s; }
+
+        .petal-rain { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
+
+        .music-widget {
+            position: fixed; bottom: 28px; right: 28px; z-index: 9997;
+            background: rgba(253,250,245,0.92); backdrop-filter: blur(18px);
+            border: 1px solid var(--blush); border-radius: 40px;
+            padding: 10px 16px; display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 4px 24px rgba(212,98,138,0.14);
+        }
+        .music-widget.playing { border-color: var(--rose); }
+        .eq-bars { display: flex; gap: 3px; height: 18px; align-items: flex-end; }
+        .eq-bar  { width: 2.5px; background: var(--rose-deep); border-radius: 2px; height: 4px; }
+        .music-widget.playing .eq-bar { animation: eq 0.6s ease-in-out infinite; }
+        .eq-bar:nth-child(2) { animation-delay: 0.15s; }
+        .eq-bar:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes eq { 0%,100%{height:4px} 50%{height:16px} }
+        .music-label { font-family: 'Dancing Script', cursive; font-size: 0.88rem; color: var(--rose-deep); }
+        .music-btn   { background: none; border: none; color: var(--rose-deep); cursor: pointer; font-size: 1rem; padding: 0 2px; transition: transform 0.2s; }
+        .music-btn:hover { transform: scale(1.2); }
+        .vol-slider  { width: 48px; height: 2px; accent-color: var(--rose-deep); cursor: pointer; }
+        audio { display: none; }
+
+        .lightbox {
+            display: none; position: fixed; inset: 0;
+            background: rgba(74,30,58,0.93); z-index: 8000; opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .lightbox.active { display: flex; opacity: 1; }
+        .lightbox-inner { display: flex; justify-content: center; align-items: center; width: 100%; height: 100%; padding: 24px; position: relative; }
+        .lightbox-img { max-width: 88vw; max-height: 84vh; object-fit: contain; border-radius: 12px; animation: lbIn 0.3s ease; }
+        @keyframes lbIn { from{opacity:0;transform:scale(0.94)} to{opacity:1;transform:scale(1)} }
+        .lb-btn { position: absolute; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); color: #fff; width: 48px; height: 48px; border-radius: 50%; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .lb-btn:hover { background: rgba(255,255,255,0.2); }
+        .lb-prev  { left: 20px; top: 50%; transform: translateY(-50%); }
+        .lb-next  { right: 20px; top: 50%; transform: translateY(-50%); }
+        .lb-close { top: 20px; right: 20px; width: 40px; height: 40px; }
+        .lb-count { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.65); font-size: 0.85rem; }
+
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 60px 24px; position: relative; z-index: 2;
+            background: linear-gradient(160deg, #FFFAF6 0%, #FFF5F8 40%, #FDFFF8 100%);
+        }
+
+        .hero-flower { width: 180px; height: 180px; position: relative; margin: 0 auto 36px; animation: bob 4s ease-in-out infinite; }
+        @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+        .fp { position: absolute; border-radius: 50% 50% 50% 0; top: 50%; left: 50%; transform-origin: 0 0; }
+        .fc { position: absolute; width: 44px; height: 44px; background: radial-gradient(circle at 35% 35%, #FFF5C0, #E8B84B); border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%); box-shadow: 0 0 22px rgba(232,184,75,0.45); z-index: 10; }
+
+        .hero-eyebrow { font-family: 'Playfair Display', serif; font-size: 0.72rem; letter-spacing: 5px; text-transform: uppercase; color: var(--rose); margin-bottom: 14px; }
+        .hero-title   { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem,6vw,4rem); color: var(--burgundy); line-height: 1.15; margin-bottom: 12px; }
+        .hero-script  { font-family: 'Dancing Script', cursive; font-size: clamp(1.3rem,3vw,1.9rem); color: var(--gold); margin-bottom: 8px; }
+        .hero-date    { font-family: 'Cormorant Garamond', serif; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; color: var(--rose); margin-bottom: 32px; }
+
+        .ornament { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 28px; }
+        .orn-line { width: 64px; height: 1px; background: linear-gradient(90deg,transparent,var(--rose),transparent); }
+        .orn-diamond { font-size: 0.7rem; color: var(--rose-deep); }
+
+        .hero-cta {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, var(--rose-deep), #E87AAA);
+            color: #fff; border: none; padding: 13px 32px; border-radius: 40px;
+            font-family: 'Playfair Display', serif; font-size: 0.95rem; letter-spacing: 2px;
+            cursor: pointer; box-shadow: 0 8px 28px rgba(212,98,138,0.28);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .hero-cta:hover { transform: translateY(-3px); box-shadow: 0 14px 36px rgba(212,98,138,0.36); }
+        .bounce { display: inline-block; animation: bd 1.5s ease-in-out infinite; }
+        @keyframes bd { 0%,100%{transform:translateY(0)} 50%{transform:translateY(7px)} }
+
+        section { position: relative; z-index: 2; padding: 80px 32px; }
+        .sec-inner { max-width: 1160px; margin: 0 auto; }
+        .sec-head  { font-family: 'Playfair Display', serif; font-size: clamp(1.9rem,4.5vw,2.8rem); color: var(--burgundy); text-align: center; margin-bottom: 8px; }
+        .sec-sub   { font-family: 'Dancing Script', cursive; font-size: clamp(1rem,2.2vw,1.3rem); color: var(--gold); text-align: center; margin-bottom: 48px; }
+
+        .photos-section {
+            background: linear-gradient(150deg, #FFF9F6 0%, #FFFAF4 50%, #F8FFF8 100%);
+            padding: 80px 32px;
+        }
+
+        .photos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px 28px;
+            margin-top: 16px;
+        }
+
+        .polaroid {
+            background: #fff;
+            border-radius: 4px;
+            padding: 12px 12px 42px;
+            border: 1px solid rgba(242,167,195,0.35);
+            box-shadow: 0 6px 20px rgba(139,53,87,0.1), 0 2px 6px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.32s ease, box-shadow 0.32s ease;
+        }
+        .polaroid:hover {
+            transform: translateY(-8px) rotate(0deg) scale(1.03) !important;
+            box-shadow: 0 18px 44px rgba(139,53,87,0.18);
+            z-index: 50;
+        }
+        .polaroid:nth-child(4n+1) { transform: rotate(-2.5deg); }
+        .polaroid:nth-child(4n+2) { transform: rotate(2deg); }
+        .polaroid:nth-child(4n+3) { transform: rotate(-1.5deg); }
+        .polaroid:nth-child(4n+4) { transform: rotate(3deg); }
+
+        .polaroid img {
+            width: 100%; aspect-ratio: 4/3; object-fit: cover;
+            display: block; border-radius: 2px;
+        }
+        .polaroid-caption {
+            font-family: 'Dancing Script', cursive; font-size: 0.92rem;
+            text-align: center; margin-top: 10px; color: var(--plum-mid);
+        }
+
+        .quote-card {
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--blush);
+            border-radius: 18px;
+            padding: 26px 22px;
+            box-shadow: 0 4px 18px rgba(212,98,138,0.08);
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .quote-card .qemoji { font-size: 1.6rem; margin-bottom: 10px; }
+        .quote-card .qtext  {
+            font-family: 'Cormorant Garamond', serif; font-style: italic;
+            font-size: 1rem; line-height: 1.7; color: var(--plum);
+        }
+
+        .video-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 8px 8px 28px;
+            border: 1px solid rgba(242,167,195,0.35);
+            box-shadow: 0 6px 22px rgba(139,53,87,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .video-card video {
+            width: 100%; aspect-ratio: 4/3; object-fit: cover;
+            border-radius: 6px; display: block;
+        }
+        .video-badge {
+            position: absolute; top: 14px; right: 14px;
+            width: 24px; height: 24px; background: rgba(212,98,138,0.88);
+            color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 0.65rem;
+        }
+        .video-caption {
+            font-family: 'Dancing Script', cursive; font-size: 0.88rem;
+            text-align: center; margin-top: 8px; color: var(--plum-mid);
+        }
+
+        .videos-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 24px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .letter-section {
+            background: linear-gradient(155deg, #FFFBF5 0%, #FFF8FB 50%, #F8FFF9 100%);
+        }
+
+        .letter-card {
+            max-width: 660px; margin: 0 auto 56px;
+            background: #FFFFFC;
+            border: 1px solid rgba(242,167,195,0.28);
+            border-radius: 4px;
+            padding: 72px 56px 48px;
+            position: relative;
+            box-shadow:
+                0 2px 4px rgba(0,0,0,0.04),
+                0 20px 50px rgba(212,98,138,0.09),
+                6px 6px 0 rgba(242,167,195,0.18);
+            transform: rotate(-0.4deg);
+        }
+        .letter-ribbon {
+            position: absolute; top: 0; left: 0; right: 0; height: 4px;
+            background: linear-gradient(90deg, var(--rose-deep), var(--rose), var(--rose-deep));
+            border-radius: 4px 4px 0 0;
+        }
+        .wax-seal {
+            position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 56px; height: 56px; border-radius: 50%;
+            background: radial-gradient(circle at 38% 35%, #FF8BB5, var(--burgundy));
+            color: rgba(255,245,220,0.95); font-family: 'Dancing Script', cursive;
+            font-size: 24px; font-weight: bold;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.2), inset -2px -2px 4px rgba(0,0,0,0.2), inset 2px 2px 4px rgba(255,255,255,0.25);
+        }
+        .letter-body { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; line-height: 2.1; color: var(--plum); }
+        .letter-para { margin-bottom: 20px; opacity: 0; transform: translateY(18px); transition: opacity 0.55s ease, transform 0.55s ease; }
+        .letter-para.visible { opacity: 1; transform: translateY(0); }
+        .rose-spin { display: inline-block; font-size: 24px; animation: spin 7s linear infinite; }
+        @keyframes spin { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+
+        .photo-strip { display: flex; gap: 16px; max-width: 780px; margin: 0 auto 12px; justify-content: center; align-items: center; }
+        .strip-img { flex: 1; height: 200px; object-fit: cover; border-radius: 12px; cursor: pointer; box-shadow: 0 6px 22px rgba(139,53,87,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+        .strip-img:nth-child(1) { transform: rotate(-1.5deg); }
+        .strip-img:nth-child(2) { transform: rotate(0.5deg); }
+        .strip-img:nth-child(3) { transform: rotate(2deg); }
+        .strip-img:hover { transform: scale(1.04) rotate(0) !important; box-shadow: 0 14px 36px rgba(139,53,87,0.16); }
+        .strip-caption { text-align: center; font-family: 'Dancing Script', cursive; color: var(--rose-deep); font-size: 1rem; margin-bottom: 48px; }
+
+        .quote-banner {
+            background: linear-gradient(135deg, var(--rose-deep) 0%, #C45580 50%, #E87AAA 100%);
+            color: #fff; border-radius: 18px; padding: 52px 40px;
+            text-align: center; position: relative; overflow: hidden;
+            margin-bottom: 60px;
+        }
+        .quote-banner::before { content: '✿'; position: absolute; font-size: 110px; opacity: 0.07; top: -10px; left: -10px; }
+        .quote-banner::after  { content: '✿'; position: absolute; font-size: 110px; opacity: 0.07; bottom: -10px; right: -10px; }
+        .qb-text  { font-family: 'Playfair Display', serif; font-style: italic; font-size: clamp(1.4rem,3vw,1.9rem); line-height: 1.8; margin-bottom: 16px; }
+        .qb-attr  { font-family: 'Dancing Script', cursive; font-size: 1.1rem; opacity: 0.85; }
+
+        .love-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 20px; margin-top: 16px; }
+        .love-card {
+            background: #fff; border-radius: 20px; padding: 28px 18px; text-align: center;
+            border: 1px solid var(--blush); box-shadow: 0 4px 16px rgba(212,98,138,0.07);
+            opacity: 0; transform: translateY(28px); transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .love-card.visible { animation: fadeUp 0.55s ease forwards; }
+        @keyframes fadeUp { to{opacity:1;transform:translateY(0)} }
+        .love-card:hover { transform: translateY(-6px); box-shadow: 0 14px 38px rgba(212,98,138,0.13); }
+        .love-emoji { font-size: 44px; margin-bottom: 12px; }
+        .love-title { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--rose-deep); font-weight: 600; margin-bottom: 8px; }
+        .love-desc  { font-family: 'Cormorant Garamond', serif; font-size: 0.93rem; color: var(--plum); line-height: 1.6; }
+
+        .finale-section {
+            background: linear-gradient(145deg, #FFF5F8 0%, #FFFBF2 50%, #F5FFF8 100%);
+            padding: 90px 32px; text-align: center;
+        }
+        .finale-title { font-family: 'Dancing Script', cursive; font-size: clamp(2rem,5vw,3rem); color: var(--rose-deep); margin-bottom: 20px; }
+        .finale-msg   { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.18rem; color: var(--plum); max-width: 560px; margin: 0 auto 48px; line-height: 2.1; }
+
+        .bouquet { display: flex; justify-content: center; align-items: flex-end; gap: 20px; margin: 0 auto 48px; height: 110px; }
+        .bf { position: relative; width: 70px; height: 70px; animation: sway 3s ease-in-out infinite; }
+        .bf:nth-child(1) { animation-delay: 0s; }
+        .bf:nth-child(2) { width: 90px; height: 90px; animation-delay: 0.2s; }
+        .bf:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes sway { 0%,100%{transform:translateX(0)rotate(0)} 50%{transform:translateX(5px)rotate(2deg)} }
+        .bfp { position: absolute; background: linear-gradient(135deg,#FFD6E7,var(--rose-deep)); border-radius: 50% 50% 50% 0; top: 50%; left: 50%; transform-origin: 0 0; }
+        .bfc { position: absolute; width: 14px; height: 14px; background: #E8B84B; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%,-50%); z-index: 10; }
+
+        .finale-photo-frame {
+            max-width: 420px; margin: 0 auto 36px;
+            background: #fff;
+            border: 1px solid var(--blush);
+            border-radius: 12px;
+            padding: 14px 14px 44px;
+            box-shadow: 0 8px 32px rgba(139,53,87,0.14), 0 2px 6px rgba(0,0,0,0.05);
+            transform: rotate(-1deg);
+        }
+        .finale-photo {
+            width: 100%; aspect-ratio: 4/3; object-fit: cover;
+            border-radius: 6px; display: block;
+        }
+        .finale-photo-caption {
+            font-family: 'Dancing Script', cursive; font-size: 1rem;
+            text-align: center; margin-top: 12px; color: var(--plum-mid);
+        }
+
+        .share-btn {
+            background: linear-gradient(135deg, var(--rose-deep), #E87AAA);
+            color: #fff; border: none; padding: 13px 34px; border-radius: 40px;
+            font-family: 'Playfair Display', serif; font-size: 1rem; letter-spacing: 1px;
+            cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 8px 26px rgba(212,98,138,0.26);
+        }
+        .share-btn:hover { transform: scale(1.05); box-shadow: 0 12px 32px rgba(212,98,138,0.34); }
+
+        footer {
+            background: #fff; border-top: 1px solid var(--blush);
+            padding: 36px 20px; text-align: center;
+        }
+        .footer-script { font-family: 'Dancing Script', cursive; font-size: 1.15rem; color: var(--rose-deep); margin-bottom: 6px; }
+        .footer-small  { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--plum); opacity: 0.7; }
+
+        @media (max-width: 900px) {
+            .photos-grid { grid-template-columns: repeat(2,1fr); }
+            .videos-row  { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+        }
+        @media (max-width: 600px) {
+            section { padding: 60px 18px; }
+            .photos-grid { grid-template-columns: 1fr; gap: 22px; }
+            .photo-strip { flex-direction: column; }
+            .strip-img   { height: 240px; flex: none; }
+            .letter-card { padding: 56px 22px 36px; transform: none; }
+            .finale-photo-frame { transform: none; }
+            .bouquet { gap: 12px; }
+            .love-grid { grid-template-columns: repeat(2,1fr); }
+        }
+        @media (max-width: 400px) {
+            .love-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="scroll-bar" id="scrollBar"></div>
+<div class="cursor-dot"  id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="petal-rain"  id="petalRain"></div>
+
+<div class="music-widget" id="musicWidget">
+    <div class="eq-bars">
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+        <div class="eq-bar"></div>
+    </div>
+    <span class="music-label">🎵</span>
+    <button class="music-btn" id="musicBtn">▶</button>
+    <input type="range" class="vol-slider" id="volSlider" min="0" max="100" value="70">
+</div>
+<audio id="bgMusic"><source src="./song.mp3" type="audio/mpeg"></audio>
+
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-inner">
+        <button class="lb-btn lb-prev"  id="lbPrev">‹</button>
+        <img id="lbImg" class="lightbox-img" src="" alt="Memory">
+        <button class="lb-btn lb-next"  id="lbNext">›</button>
+        <button class="lb-btn lb-close" id="lbClose">✕</button>
+        <div class="lb-count" id="lbCount"></div>
+    </div>
+</div>
+
+<section class="hero" id="heroSection">
+    <div class="hero-flower" id="heroFlower"></div>
+    <p class="hero-eyebrow">8th June 2026 · Best Friends Day</p>
+    <h1 class="hero-title">Happy Best Friends Day 🌸</h1>
+    <p class="hero-script">— For Saee, my forever person —</p>
+    <p class="hero-date">Pragati Rayate &nbsp;·&nbsp; With all my love</p>
+    <div class="ornament">
+        <span class="orn-line"></span>
+        <span class="orn-diamond">✦</span>
+        <span class="orn-line"></span>
+    </div>
+    <button class="hero-cta" id="ctaBtn">✨ Begin Our Story ✨ <span class="bounce">↓</span></button>
+</section>
+
+<section class="photos-section" id="photosSection">
+    <div class="sec-inner">
+        <h2 class="sec-head">Our Moments Together 📸</h2>
+        <p class="sec-sub">Every picture worth a thousand feelings…</p>
+
+        <div class="photos-grid" id="photosGrid">
+
+            <div class="polaroid"><img src="./img (10).jpg" alt="Memory 1" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23FFD6E7%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2254%22 fill=%22%23D4628A%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E🌸%3C/text%3E%3C/svg%3E'"><div class="polaroid-caption">Memory ✨</div></div>
+
+            <div class="polaroid"><img src="./img (7).jpg" alt="Memory 2" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23FFE8F3%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2254%22 fill=%22%23D4628A%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E📸%3C/text%3E%3C/svg%3E'"><div class="polaroid-caption">Memory ✨</div></div>
+
+            <div class="quote-card">
+                <div class="qemoji">🌸</div>
+                <div class="qtext">"Your smile lights up my entire world. Thank you for being you."</div>
+            </div>
+
+            <div class="polaroid"><img src="./img (2).jpg" alt="Memory 3" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23FFD6E7%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2254%22 fill=%22%23D4628A%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E🌸%3C/text%3E%3C/svg%3E'"><div class="polaroid-caption">Memory ✨</div></div>
+
+            <div class="polaroid"><img src="./img (3).jpg" alt="Memory 4" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23FFF4EE%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2254%22 fill=%22%23E8B84B%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E📸%3C/text%3E%3C/svg%3E'"><div class="polaroid-caption">Memory ✨</div></div>
+
+            <div class="polaroid"><img src="./img (4).jpg" alt="Memory 5" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23F5F0FF%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2254%22 fill=%22%23B07FDD%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E💕%3C/text%3E%3C/svg%3E'"><div class="polaroid-caption">Memory ✨</div></div>
+
+            <div class="quote-card">
+                <div class="qemoji">💕</div>
+                <div class="qtext">"Best friends are sisters you choose for yourself."</div>
+            </div>
+
+            <div class="polaroid"><img src="./img (6).jpg" alt="Memory 7" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23FFE8F3%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2254%22 fill=%22%23D4628A%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E📸%3C/text%3E%3C/svg%3E'"><div class="polaroid-caption">Memory ✨</div></div>
+
+            <div class="polaroid"><img src="./img (8).jpg" alt="Memory 8" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23E8F5E9%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2254%22 fill=%22%23A8C8A0%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E💕%3C/text%3E%3C/svg%3E'"><div class="polaroid-caption">Memory ✨</div></div>
+
+            <div class="polaroid"><img src="./img (9).jpg" alt="Memory 9" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23FFD6E7%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2254%22 fill=%22%23D4628A%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E🌸%3C/text%3E%3C/svg%3E'"><div class="polaroid-caption">Memory ✨</div></div>
+
+            <div class="quote-card">
+                <div class="qemoji">✨</div>
+                <div class="qtext">"A day without you is like a day without sunshine."</div>
+            </div>
+
+            <div class="polaroid"><img src="./img (1).jpg" alt="Memory 10" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23FFF4EE%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2254%22 fill=%22%23E8B84B%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E📸%3C/text%3E%3C/svg%3E'"><div class="polaroid-caption">Memory ✨</div></div>
+
+        </div>
+
+        <div class="videos-row">
+            <div class="video-card">
+                <div class="video-badge">▶</div>
+                <video src="./vid1.mp4" autoplay muted loop playsinline preload="metadata"></video>
+                <div class="video-caption">Our little moment 🎬</div>
+            </div>
+            <div class="video-card">
+                <div class="video-badge">▶</div>
+                <video src="./vid 2.mp4" autoplay muted loop playsinline preload="metadata"></video>
+                <div class="video-caption">Best memories 🎀</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="letter-section" id="letterSection">
+    <div class="sec-inner">
+        <h2 class="sec-head">A Letter, Just For You 💌</h2>
+        <p class="sec-sub">Written from the heart…</p>
+
+        <div class="letter-card">
+            <div class="letter-ribbon"></div>
+            <div class="wax-seal">P</div>
+            <div class="letter-body">
+                <p class="letter-para">Dear Saee,</p>
+                <p class="letter-para">Kaisaa laga ye webpage thoda ghai ghai madhi banavla aheaa thoda manage karun ....... 
+                    Ata tu ghari aa nay trr Icecream khau ghatlaa astaa pn jaudee ataa ......hehehe.
+                </p>
+                <p class="letter-para">Thanks A lot for being with mee as mere bahin mere sahelee mere best friend and aur bhii bohot kuchhh
+                    maze nakhree and maza pagalpana sahan krnee ke liyeee khup khupppp thank u andd haa it really meant a lott....!
+                </p>
+                <p class="letter-para">apan khu bhanddtoo and khup veles chidto and khuppp kahi kahii hotaa but yarr we stillll get back again together even better and aur samzutdarr bankrr aate haii and that where our friendship stands out ...!  
+                    I want a promise from you kee kiti pn kahi zala naa we will not each otherr jr vait vatla na kahii then we will speak over itt kadi bhandan zala naa ke kadi doga pn ego madhi ny annar doga ekmekana sakke bhau bahin sarka sambhalun gheu and aatta mage jee zala tsa trrr prt kadichh hou denr nahii kti pn mushkil time ala naa apn sobat milun sort karuu...... 
+
+                    Kadi kadi behaviour chuktaa but we will always do our best and samzavu 1k mekala and apn ekmekan madii no ego no bhandan nothing kahich nhi thevnarrr kadhich nhii and kayam sambhalul gheu alll waysssss....!  
+                </p>
+                <p class="letter-para">Bol Promise Accepted..? 
+                    Apan asch sath sathh kayam ashech best friends and bhau bahin rahuu foreverrrr apn kiti pn close zalo naa tri tu ya gosti cheee kadich kalji nko karu kee maza kahi v4r change hotil ! me kiti pn flirt kela aksa pn bollo te tevdha majak purta asta to make mood fresh meree intensions will bee always as pure ass sweet waffle with losts off chocolatee...!
+
+                    Itkachh ke apan ye bond forever ke liyee thevuu andd bss idar itna hi type hogaa baki apla aheach roz cha rozz .....😁
+
+                    Thanks For Everyting , For Always Being with meee...!
+                </p>
+                <p class="letter-para">With all my heart,<br>Pranayyy 💕 &nbsp;<span class="rose-spin">🌸</span></p>
+            </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;align-items:center;width:100%;">
+            <div class="photo-strip">
+                <img src="./img (3).jpg" alt="Memory" class="strip-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23FFD6E7%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2244%22 fill=%22%23D4628A%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E📸%3C/text%3E%3C/svg%3E'">
+                <img src="./img (1).jpg" alt="Memory" class="strip-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23E8F5E9%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2244%22 fill=%22%23A8C8A0%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E📸%3C/text%3E%3C/svg%3E'">
+                <img src="./img (9).jpg" alt="Memory" class="strip-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 300 200%22%3E%3Crect fill=%22%23FFF4EE%22 width=%22300%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2244%22 fill=%22%23E8B84B%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E📸%3C/text%3E%3C/svg%3E'">
+            </div>
+            <p class="strip-caption">Some moments 🌸</p>
+        </div>
+
+        <div class="quote-banner">
+            <div class="qb-text">Agar kabhi aapni dosti pe shak ho na mere dost to akelel me sikka uchall lenaa ...</div>
+            aur ye filmy wala dialog nhi haii ye sikka hamesha apnee side me hi giregaa coz apne dosti utne sacchi haiii...!💕
+            <div class="qb-attr">— Always &amp; Forever 💕</div>
+        </div>
+
+        <h3 class="sec-head" style="margin-bottom:40px;">Things I Love About You ✨</h3>
+        <div class="love-grid" id="loveGrid"></div>
+    </div>
+</section>
+
+<section class="finale-section" id="finaleSection">
+    <div class="sec-inner">
+        <h1 class="finale-title">Happy Best Friends Day, Pragati! 🌸</h1>
+        <p class="finale-msg">Thanks For Being my Person......! I will be forever grateful for u and haa Ye bhaii bhi tere liye always available haii in any of scenario kabhi bhi yaad krr I will bee always there in ALL-Wayssss!</p>
+
+        <div class="bouquet" id="bouquet"></div>
+
+        <div class="finale-photo-frame">
+            <img src="./img (4).jpg" alt="Us" class="finale-photo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 400 300%22%3E%3Crect fill=%22%23FFD6E7%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-size=%2254%22 fill=%22%23D4628A%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22%3E🌸%3C/text%3E%3C/svg%3E'">
+            <div class="finale-photo-caption">Always & forever 💕</div>
+        </div>
+
+        <button class="share-btn" id="shareBtn">💕 Share This Page 💕</button>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-script">Made with 💕 for Pragati Rayate — Best Friends Day 2026</div>
+    <div class="footer-small">You are my person. Always. 🌸</div>
+</footer>
+
+<script>
+const LOVE_CARDS = [
+    { emoji:"💪", title:"Your Strength",   desc:"That bindhass attitude (IDGf,IDC...!) bss omkar cha vishay ala ke thodi pagal hotii...😁" },
+    { emoji:"🎨", title:"Your Creativity", desc:"Tera ye creative mind makes u different from all" },
+    { emoji:"🤝", title:"Your Loyalty",    desc:"Tu bhale hii muze dikhati nyy coz mai jyda hava me chala jata huu....u really have concern for mee you also fell bad jab muze bura lagta haii bss u dont show up....!" },
+    { emoji:"💬", title:"Your Honesty",    desc:"Sach bolna to u prefer always (IDGF) wala attitude jo haii" },
+    { emoji:"🌟", title:"Your Energy",     desc:"Ur energy feels so crazy joo har baat pee bss always ready andd haa in all thingss hameshaa bss F*ck ka joo use krti haii...!" },
+];
+
+const PHOTO_SRCS = [
+    "./img (10).jpg","./img (7).jpg","./img (2).jpg","./img (3).jpg",
+    "./img (4).jpg","./img (5).jpg","./img (6).jpg","./img (8).jpg",
+    "./img (9).jpg","./img (1).jpg",
+];
+const PLACEHOLDER = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect fill='%23FFD6E7' width='400' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='54' fill='%23D4628A' text-anchor='middle' dominant-baseline='middle'%3E📸%3C/text%3E%3C/svg%3E";
+
+let lbIndex=0, curX=0, curY=0, ringX=0, ringY=0;
+
+document.addEventListener('DOMContentLoaded', () => {
+    buildHeroFlower();
+    buildBouquet();
+    buildLoveCards();
+    initCursor();
+    initScrollBar();
+    initPetalRain();
+    initMusic();
+    initLightbox();
+    initScrollTriggers();
+    initVideoAutoplay();
+    initShareBtn();
+    document.getElementById('ctaBtn').addEventListener('click', () =>
+        document.getElementById('photosSection').scrollIntoView({ behavior:'smooth' })
+    );
+});
+
+function buildHeroFlower() {
+    const el = document.getElementById('heroFlower');
+    [{w:46,h:66,r:0,ty:50},{w:46,h:66,r:90,ty:50},{w:46,h:66,r:180,ty:50},{w:46,h:66,r:270,ty:50},
+     {w:56,h:76,r:45,ty:64},{w:56,h:76,r:135,ty:64},{w:56,h:76,r:225,ty:64},{w:56,h:76,r:315,ty:64}]
+    .forEach(p => {
+        const d = document.createElement('div');
+        d.className = 'fp';
+        d.style.cssText = `width:${p.w}px;height:${p.h}px;background:linear-gradient(135deg,#FFD6E7,#F2A7C3);transform:translate(-50%,-50%) rotate(${p.r}deg) translateY(-${p.ty}px);`;
+        el.appendChild(d);
+    });
+    const c = document.createElement('div'); c.className='fc'; el.appendChild(c);
+}
+
+function buildBouquet() {
+    const el = document.getElementById('bouquet');
+    [[6,20],[8,28],[6,20]].forEach(([count,ty]) => {
+        const f = document.createElement('div'); f.className='bf';
+        for(let i=0;i<count;i++){
+            const p=document.createElement('div'); p.className='bfp';
+            p.style.cssText=`width:18px;height:28px;transform:translate(-50%,-50%) rotate(${(360/count)*i}deg) translateY(-${ty}px);`;
+            f.appendChild(p);
+        }
+        const c=document.createElement('div'); c.className='bfc'; f.appendChild(c);
+        el.appendChild(f);
+    });
+}
+
+function buildLoveCards() {
+    const grid = document.getElementById('loveGrid');
+    LOVE_CARDS.forEach(c => {
+        const el = document.createElement('div'); el.className='love-card';
+        el.innerHTML=`<div class="love-emoji">${c.emoji}</div><div class="love-title">${c.title}</div><div class="love-desc">${c.desc}</div>`;
+        grid.appendChild(el);
+    });
+}
+
+function initCursor() {
+    const dot=document.getElementById('cursorDot'), ring=document.getElementById('cursorRing');
+    document.addEventListener('mousemove',e=>{ curX=e.clientX; curY=e.clientY; dot.style.left=curX+'px'; dot.style.top=curY+'px'; });
+    (function tick(){ ringX+=(curX-ringX)*0.12; ringY+=(curY-ringY)*0.12; ring.style.left=ringX+'px'; ring.style.top=ringY+'px'; requestAnimationFrame(tick); })();
+}
+
+function initScrollBar() {
+    const bar=document.getElementById('scrollBar');
+    window.addEventListener('scroll',()=>{ const h=document.documentElement.scrollHeight-window.innerHeight; bar.style.width=(window.scrollY/h*100)+'%'; });
+}
+
+function initPetalRain() {
+    const container=document.getElementById('petalRain');
+    const colors=['#FFD6E7','#F2A7C3','#FFE8F3','#D4628A','#FFB6C1','#C8E6C9'];
+    function spawn(){
+        const p=document.createElement('div');
+        const sz=Math.random()*6+7;
+        p.style.cssText=`position:absolute;border-radius:50% 0 50% 0;opacity:0.45;width:${sz}px;height:${sz}px;background:${colors[Math.floor(Math.random()*colors.length)]};left:${Math.random()*100}vw;top:-12px;`;
+        const dur=Math.random()*9+6, tx=(Math.random()-0.5)*80;
+        const id='p'+Math.random().toString(36).slice(2,9);
+        const s=document.createElement('style');
+        s.textContent=`@keyframes ${id}{to{transform:translateY(100vh) translateX(${tx}px) rotate(${Math.random()*360}deg);opacity:0;}}`;
+        document.head.appendChild(s);
+        p.style.animation=`${id} ${dur}s linear forwards`;
+        container.appendChild(p);
+        setTimeout(()=>{p.remove();s.remove();},(dur+2)*1000);
+    }
+    setInterval(spawn,280);
+    for(let i=0;i<18;i++) setTimeout(spawn,i*160);
+}
+
+function initMusic() {
+    const audio=document.getElementById('bgMusic'),
+          btn=document.getElementById('musicBtn'),
+          slider=document.getElementById('volSlider'),
+          widget=document.getElementById('musicWidget');
+    const START=100, END=160;
+
+    audio.addEventListener('loadedmetadata',()=>{ audio.currentTime=START; });
+    audio.addEventListener('timeupdate',()=>{
+        if(audio.currentTime>=END){ audio.currentTime=START; audio.play(); }
+    });
+    btn.addEventListener('click',()=>{
+        if(audio.paused){
+            if(audio.currentTime<START||audio.currentTime>=END) audio.currentTime=START;
+            audio.play(); btn.textContent='⏸'; widget.classList.add('playing');
+        } else {
+            audio.pause(); btn.textContent='▶'; widget.classList.remove('playing');
+        }
+    });
+    slider.addEventListener('input',e=>{ audio.volume=e.target.value/100; });
+    audio.volume=0.7;
+
+    // ✅ FIXED: Autoplay on first user gesture — bypasses browser autoplay block
+    function tryAutoplay() {
+        if(audio.paused){
+            audio.currentTime=START;
+            audio.play().then(()=>{ btn.textContent='⏸'; widget.classList.add('playing'); }).catch(()=>{});
+        }
+    }
+    window.addEventListener('scroll',   tryAutoplay, { once:true });
+    window.addEventListener('touchstart', tryAutoplay, { once:true });
+    window.addEventListener('click',    tryAutoplay, { once:true });
+}
+
+function initLightbox() {
+    const lb=document.getElementById('lightbox'),
+          img=document.getElementById('lbImg'),
+          cnt=document.getElementById('lbCount');
+    document.getElementById('lbClose').addEventListener('click',closeLb);
+    document.getElementById('lbPrev').addEventListener('click',()=>navLb(-1));
+    document.getElementById('lbNext').addEventListener('click',()=>navLb(1));
+    document.addEventListener('keydown',e=>{
+        if(!lb.classList.contains('active')) return;
+        if(e.key==='ArrowLeft') navLb(-1);
+        if(e.key==='ArrowRight') navLb(1);
+        if(e.key==='Escape') closeLb();
+    });
+    let tx=0;
+    lb.addEventListener('touchstart',e=>{tx=e.touches[0].clientX;});
+    lb.addEventListener('touchend',e=>{ const dx=e.changedTouches[0].clientX-tx; if(dx<-50)navLb(1); if(dx>50)navLb(-1); });
+    document.querySelectorAll('.polaroid').forEach((card,i)=>{ card.addEventListener('click',()=>openLb(i)); });
+    document.querySelectorAll('.strip-img').forEach((im,i)=>{ im.addEventListener('click',()=>openLb(i%PHOTO_SRCS.length)); });
+    function openLb(i){ lbIndex=i; updateLb(); lb.classList.add('active'); document.body.style.overflow='hidden'; }
+    function closeLb(){ lb.classList.remove('active'); document.body.style.overflow=''; }
+    function navLb(d){ lbIndex=(lbIndex+d+PHOTO_SRCS.length)%PHOTO_SRCS.length; updateLb(); }
+    function updateLb(){ img.src=PHOTO_SRCS[lbIndex]; img.onerror=()=>{img.src=PLACEHOLDER;}; cnt.textContent=`${lbIndex+1} / ${PHOTO_SRCS.length}`; }
+}
+
+function initScrollTriggers() {
+    const paras=document.querySelectorAll('.letter-para');
+    new IntersectionObserver(entries=>{ entries.forEach((e,idx)=>{ if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),idx*300); }); },{threshold:0.25})
+    .observe ? paras.forEach(p=>new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); },{threshold:0.25}).observe(p)) : null;
+
+    const pObs=new IntersectionObserver(entries=>{ entries.forEach((e,idx)=>{ if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),idx*300); }); },{threshold:0.25});
+    paras.forEach(p=>pObs.observe(p));
+    const lObs=new IntersectionObserver(entries=>{ entries.forEach((e,idx)=>{ if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'),idx*80); }); },{threshold:0.15});
+    document.querySelectorAll('.love-card').forEach(c=>lObs.observe(c));
+}
+
+function initVideoAutoplay() {
+    const obs=new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.play().catch(()=>{}); else e.target.pause(); }); },{threshold:0.3});
+    document.querySelectorAll('.video-card video').forEach(v=>obs.observe(v));
+}
+
+function initShareBtn() {
+    document.getElementById('shareBtn').addEventListener('click',async()=>{
+        const data={title:'Happy Best Friends Day - Pragati 💕',text:'A special tribute 🌸',url:window.location.href};
+        if(navigator.share){ try{ await navigator.share(data); }catch(e){ if(e.name!=='AbortError') copyFallback(); } } else { copyFallback(); }
+    });
+    function copyFallback(){ navigator.clipboard.writeText(window.location.href).then(()=>toast('Link copied! 💕')).catch(()=>toast('Copy the URL from your browser 💕')); }
+}
+
+function toast(msg){
+    const t=document.createElement('div');
+    t.style.cssText='position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:rgba(74,30,58,0.9);color:#fff;padding:12px 26px;border-radius:40px;font-family:"Dancing Script",cursive;z-index:10000;font-size:1rem;';
+    t.textContent=msg; document.body.appendChild(t); setTimeout(()=>t.remove(),2400);
+}
+</script>
+</body>
+</html>
